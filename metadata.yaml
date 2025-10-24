@@ -1,5 +1,5 @@
 homepage: "https://www.leadbehavior.com"
 documentation: "https://www.leadbehavior.com/google-tag-manager-template"
 versions:
-  - sha: 5f02a788b90ae804f86b04aa24af8937e567874a
+  - sha: c55ab2fcbbb4a53304964a75a48b6bd0f969e7eb
     changeNotes: Initial release.
