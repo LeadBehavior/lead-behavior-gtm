@@ -106,7 +106,7 @@ setInWindow('leadBehavior', {
   recaptchaKey: recaptchaKey,
 }, false);
 
-injectScript('https://staging.static.leadbehavior.com/verify.js');
+injectScript('https://static.leadbehavior.com/verify.js');
 
 callInWindow('leadBehavior.verify', {
     leadId: leadId,
