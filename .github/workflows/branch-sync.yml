@@ -1,0 +1,32 @@
+name: Sync Master to Staging
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  merge_master_into_staging:
+    runs-on: ubuntu-latest
+    # Optional: Add a condition to only run if the previous deployment job succeeded
+    # needs: [name_of_deployment_job]
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Checkout the target branch (staging) first
+          ref: staging
+          fetch-depth: 0 # Fetch all history for merging
+
+      - name: Merge master into staging
+        run: |
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --global user.name "${GITHUB_ACTOR}"
+          # Fetch master branch
+          git fetch origin master
+          # Merge master into the current staging branch
+          git merge origin/master --no-edit
+          # Push the changes back to the remote staging branch
+          git push origin staging
