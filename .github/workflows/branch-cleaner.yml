@@ -3,12 +3,14 @@ name: Branch Cleaner
 on:
   schedule:
     - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   cleanup-branches:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,5 +18,5 @@ jobs:
         uses: mmorenoregalado/action-branches-cleaner@v2.0.3
         with:
           base_branches: master,staging
-          token: ${{ secrets.LEAD_BEHAVIOR_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           days_old_threshold: 30
